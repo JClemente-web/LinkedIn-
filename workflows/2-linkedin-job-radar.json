@@ -23,11 +23,21 @@
       }
     },
     {
+      "id": "areas-1",
+      "name": "Definir buscas (3 áreas)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [200, 0],
+      "parameters": {
+        "jsCode": "// Uma busca por área — edite as palavras-chave à vontade.\n// Cada item vira uma chamada separada à Apify.\nreturn [\n  {\n    json: {\n      area: 'RH',\n      keywords: '\"recursos humanos\" OR recrutamento OR \"departamento pessoal\" OR \"analista de rh\" OR \"assistente de rh\"'\n    }\n  },\n  {\n    json: {\n      area: 'Química/Offshore',\n      keywords: 'químico OR química OR laboratório OR offshore OR embarcado OR plataforma'\n    }\n  },\n  {\n    json: {\n      area: 'Programação/TI',\n      keywords: 'desenvolvedor OR programador OR \"suporte técnico\" OR \"analista de dados\" OR automação'\n    }\n  }\n];"
+      }
+    },
+    {
       "id": "apify-1",
       "name": "Buscar vagas (Apify)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [220, 0],
+      "position": [400, 0],
       "parameters": {
         "method": "POST",
         "url": "https://api.apify.com/v2/acts/k1ra~linkedin-jobs-scraper/run-sync-get-dataset-items",
@@ -35,20 +45,20 @@
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "{\n  \"keywords\": \"\\\"recursos humanos\\\" OR recrutamento OR \\\"departamento pessoal\\\" OR qu\u00edmico OR laborat\u00f3rio OR offshore OR embarcado\",\n  \"location\": \"Brazil\",\n  \"postedWithin\": \"24h\",\n  \"excludeRecruiters\": false,\n  \"maxResults\": 80,\n  \"includeDescription\": true\n}",
+        "jsonBody": "={{ JSON.stringify({ keywords: $json.keywords, location: \"Brazil\", postedWithin: \"24h\", excludeRecruiters: false, maxResults: 50, includeDescription: true }) }}",
         "options": {
           "timeout": 300000
         }
       },
       "notesInFlow": true,
-      "notes": "Edite keywords/location. Credencial Header Auth: Authorization = Bearer SEU_TOKEN_APIFY"
+      "notes": "Roda 1x por área definida no node anterior. Credencial Header Auth: Authorization = Bearer SEU_TOKEN_APIFY"
     },
     {
       "id": "dedupe-1",
       "name": "Remover vagas já vistas",
       "type": "n8n-nodes-base.removeDuplicates",
       "typeVersion": 2,
-      "position": [440, 0],
+      "position": [600, 0],
       "parameters": {
         "operation": "removeItemsSeenInPreviousExecutions",
         "logic": "removeItemsWithAlreadySeenKeyValues",
@@ -181,6 +191,51 @@
                 "type": "string",
                 "operation": "contains"
               }
+            },
+            {
+              "id": "t13",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "desenvolv",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "t14",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "program",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "t15",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "suporte",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "t16",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "dados",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "t17",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "automação",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
             }
           ]
         }
@@ -208,7 +263,7 @@
           "values": [
             {
               "role": "system",
-              "content": "Você é um recrutador experiente. Avalie o fit entre o candidato e a vaga.\n\nPERFIL DO CANDIDATO (revise e complete os campos entre colchetes):\n- Formação: Gestão de Recursos Humanos (concluída, ainda sem experiência formal na área)\n- Formação em Química, com 4 meses de experiência prática na área\n- Curso de segurança para trabalho embarcado/offshore concluído (ex.: CBSP) — disponível para embarcar\n- Cursando: Economia\n- Objetivo: PRIMEIRA oportunidade em uma destas áreas: (1) RH / recrutamento / departamento pessoal, (2) Química / laboratório, (3) trabalho embarcado ou offshore\n- Aceita: remoto, híbrido, presencial ou embarcado; CLT, PJ ou temporário; vagas júnior, auxiliar, assistente, trainee ou estágio; disponibilidade imediata\n- Também considera vagas de entrada em atendimento/administrativo remoto como renda enquanto busca a área principal\n- Idiomas: português nativo; inglês [completar nível]\n- Localização: [completar cidade/UF]\n\nCRITÉRIOS DE SCORE:\n- Vagas de ENTRADA (júnior, auxiliar, assistente, trainee, estágio) nas 3 áreas-alvo: score alto (8-10) se os requisitos forem compatíveis\n- Vagas offshore/embarcadas que aceitem o certificado de segurança e pouca experiência: score alto\n- Vagas que combinem áreas (ex.: RH em empresa de óleo e gás, técnico de laboratório offshore): score máximo\n- Vagas que exijam 3+ anos de experiência comprovada ou inglês fluente: score baixo (0-4)\n- Vagas administrativas/atendimento remotas de entrada: score médio (5-7) — servem como renda imediata\n\nResponda SOMENTE com JSON válido neste formato:\n{\n  \"score\": <número de 0 a 10>,\n  \"justificativa\": \"<2 a 3 frases explicando o score>\",\n  \"pontos_de_atencao\": \"<requisitos que o candidato não atende, ou 'nenhum'>\"\n}"
+              "content": "Você é um recrutador experiente. Avalie o fit entre o candidato e a vaga.\n\nPERFIL DO CANDIDATO (revise e complete os campos entre colchetes):\n- Formação: Gestão de Recursos Humanos (concluída, ainda sem experiência formal na área)\n- Formação em Química, com 4 meses de experiência prática na área\n- Curso de segurança para trabalho embarcado/offshore concluído (ex.: CBSP) — disponível para embarcar\n- Estudando programação e automação por conta própria: montou automações com n8n, integrações de API e IA [ajuste conforme seu nível real: linguagens, cursos, projetos]\n- Cursando: Economia\n- Objetivo: PRIMEIRA oportunidade em uma destas áreas: (1) RH / recrutamento / departamento pessoal, (2) Química / laboratório, (3) trabalho embarcado ou offshore, (4) TI de entrada (suporte técnico, automação, dados, desenvolvimento júnior)\n- Aceita: remoto, híbrido, presencial ou embarcado; CLT, PJ ou temporário; vagas júnior, auxiliar, assistente, trainee ou estágio; disponibilidade imediata\n- Também considera vagas de entrada em atendimento/administrativo remoto como renda enquanto busca a área principal\n- Idiomas: português nativo; inglês [completar nível]\n- Localização: [completar cidade/UF]\n\nCRITÉRIOS DE SCORE:\n- Vagas de ENTRADA (júnior, auxiliar, assistente, trainee, estágio) nas 4 áreas-alvo: score alto (8-10) se os requisitos forem compatíveis\n- Vagas offshore/embarcadas que aceitem o certificado de segurança e pouca experiência: score alto\n- Vagas que combinem áreas (ex.: RH em empresa de óleo e gás, laboratório offshore, RH com automação/people analytics): score máximo\n- Vagas de TI que exijam stack específica avançada ou 3+ anos de experiência comprovada ou inglês fluente: score baixo (0-4)\n- Vagas administrativas/atendimento remotas de entrada: score médio (5-7) — servem como renda imediata\n\nResponda SOMENTE com JSON válido neste formato:\n{\n  \"score\": <número de 0 a 10>,\n  \"justificativa\": \"<2 a 3 frases explicando o score>\",\n  \"pontos_de_atencao\": \"<requisitos que o candidato não atende, ou 'nenhum'>\"\n}"
             },
             {
               "role": "user",
@@ -365,6 +420,17 @@
   ],
   "connections": {
     "Todo dia às 8h": {
+      "main": [
+        [
+          {
+            "node": "Definir buscas (3 áreas)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Definir buscas (3 áreas)": {
       "main": [
         [
           {
