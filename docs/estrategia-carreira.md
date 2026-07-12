@@ -62,7 +62,8 @@ Verdades do mercado que ninguém te conta:
 
 O erro clássico da transição é o perfil "genérico que serve para tudo e não aparece em busca nenhuma". Como resolver:
 
-- **Headline** (o campo mais pesado na busca do recrutador — não deixe só "estudante"): `Gestão de RH | Recrutamento & Seleção | Técnico em Química | Certificado para trabalho offshore | Cursando Economia`
+- **Uma conta só, sempre**: manter mais de um perfil no LinkedIn viola os termos da plataforma (uma pessoa = um perfil) e o LinkedIn detecta e bane **todas** as contas duplicadas. Além disso, 4 perfis dividem suas conexões e histórico por 4 — você fica invisível em todas as buscas em vez de forte em uma. Um perfil bem estruturado fala com todas as suas audiências.
+- **Headline** (o campo mais pesado na busca do recrutador — não deixe só "estudante"): `Gestão de RH | Recrutamento & Seleção | Técnico em Química | Offshore & Acesso por Corda (IRATA) | Cursando Economia`
 - **Open to Work** (visível para recrutadores): cadastre até 5 cargos — ex.: Assistente de RH, Analista de Recrutamento, Auxiliar de Departamento Pessoal, Técnico de Laboratório, Auxiliar Químico.
 - **Sobre**: 3 parágrafos — quem você é e as 3 frentes; o que já fez (Química, 4 meses + curso embarcado); o que busca e disponibilidade imediata. Termine com contato.
 - **Competências**: adicione as 10–15 que aparecem nas vagas que você quer (recrutamento, folha de pagamento, análises laboratoriais…) — o filtro de skills do Recruiter usa isso.
