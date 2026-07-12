@@ -55,6 +55,10 @@ Isso mantém sua conta segura e, na prática, é mais eficaz: aplicações revis
 
 ## Pré-requisitos
 
+### 0. Subindo o n8n (se ainda não tem)
+
+O repositório inclui um `docker-compose.yml` que sobe um n8n self-hosted **já com os 3 workflows importados** — veja a "Opção A" no [README](../README.md). Se preferir não gerenciar servidor, use o n8n Cloud e importe os JSONs manualmente.
+
 ### 1. n8n atualizado (≥ 2.18.0)
 
 O LinkedIn desativou a versão de API `202504` em abril de 2026, o que quebrou o node nativo do LinkedIn em versões antigas do n8n (erro HTTP 426 / "version is not active"). A correção saiu no **n8n 2.18.0**, que envia o header `LinkedIn-Version: 202604`. Se você usa n8n self-hosted, atualize antes de começar. No n8n Cloud já está resolvido.

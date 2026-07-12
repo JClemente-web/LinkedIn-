@@ -1,0 +1,28 @@
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: n8n-linkedin
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-America/Sao_Paulo}
+      - TZ=${GENERIC_TIMEZONE:-America/Sao_Paulo}
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY:?Defina N8N_ENCRYPTION_KEY no arquivo .env}
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_DEFAULT_LOCALE=pt-BR
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./workflows:/workflows:ro
+    # Na primeira inicialização, importa os 3 workflows automaticamente.
+    # O arquivo-marcador evita duplicar os workflows a cada restart.
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        if [ ! -f /home/node/.n8n/.workflows-imported ]; then
+          n8n import:workflow --separate --input=/workflows &&
+          touch /home/node/.n8n/.workflows-imported
+        fi
+        exec n8n
+volumes:
+  n8n_data:
