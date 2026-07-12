@@ -37,7 +37,11 @@ Abra **http://localhost:5678**, crie sua conta de administrador (primeiro acesso
 ### Depois de logar (as duas opções)
 
 1. Siga a seção **Pré-requisitos** do **[guia completo](docs/guia-linkedin-n8n.md)** para conectar as credenciais (LinkedIn OAuth, Notion, Todoist, OpenAI, Apify) — esse passo é sempre manual porque exige login nas suas contas.
-2. Edite os blocos marcados com `EDITE ESTE BLOCO` nos prompts de IA (seu perfil, stack e tom de voz).
+2. Complete os campos entre colchetes nos prompts de IA (nome, cidade, inglês, contato). Os prompts já vêm configurados para o perfil **RH · Química · Offshore** em início de carreira.
 3. Rode cada workflow manualmente uma vez para testar e depois ative os agendamentos (toggle **Active**).
+
+## Estratégia de carreira
+
+O plano completo das três trilhas (renda imediata · RH · trabalho embarcado), com onde procurar além do LinkedIn, checklist de documentos offshore, posicionamento de perfil e rotina semanal, está em **[docs/estrategia-carreira.md](docs/estrategia-carreira.md)**.
 
 > **Importante:** aplicar automaticamente (bot clicando em "Easy Apply") viola os Termos do LinkedIn e arrisca banimento. A arquitetura aqui é *human-in-the-loop*: a automação encontra, filtra, pontua e prepara a carta — o clique final de aplicar é seu. Detalhes no guia.
