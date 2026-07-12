@@ -29,12 +29,39 @@ Abra **http://localhost:5678**, crie sua conta de administrador (primeiro acesso
 
 > Testado com n8n 2.29.10. Guarde bem o `N8N_ENCRYPTION_KEY`: sem ele, as credenciais salvas ficam ilegíveis.
 
-### Opção B — n8n Cloud (sem servidor)
+### Opção B — n8n já instalado via npm/Node.js (localhost:5678)
+
+Se você já roda o n8n na sua máquina com Node.js:
+
+1. **Confira a versão** (precisa ser ≥ 2.18.0 por causa da API do LinkedIn):
+
+```bash
+n8n --version
+# se estiver antiga:
+npm update -g n8n
+```
+
+2. **Baixe os workflows**: clone o repositório (`git clone https://github.com/JClemente-web/LinkedIn-.git`) ou baixe o ZIP no GitHub (botão verde **Code → Download ZIP**).
+
+3. **Importe** — do jeito mais simples, pela interface: abra http://localhost:5678, e em **Workflows → ⋮ (três pontinhos) → Import from File**, selecione um a um os 3 arquivos da pasta `workflows/`. Ou, se preferir terminal (com o n8n parado):
+
+```bash
+n8n import:workflow --separate --input=caminho/para/LinkedIn-/workflows
+```
+
+4. **Fuso horário dos agendamentos**: dentro de cada workflow, abra **Settings (⋮ no canto) → Timezone** e escolha `America/Sao_Paulo`, senão os horários (8h, 9h) rodam em UTC.
+
+**Avisos específicos do n8n local:**
+
+- Os agendamentos só disparam **enquanto o n8n estiver rodando** — se você fechar o terminal ou desligar o PC, nada roda. Deixe o n8n aberto nos horários dos gatilhos, ou rode os workflows manualmente, ou configure o n8n para iniciar com o sistema.
+- Se o LinkedIn recusar o callback OAuth em `http://localhost:5678` na hora de conectar a credencial, inicie o n8n com `n8n start --tunnel` — isso gera uma URL https temporária que o LinkedIn aceita como redirect. As demais credenciais (Notion, Todoist, OpenAI, Apify) usam token/API key e funcionam normalmente no localhost.
+
+### Opção C — n8n Cloud (sem instalar nada)
 
 1. Crie uma conta em [n8n.io](https://n8n.io).
 2. Importe cada JSON da pasta [`workflows/`](workflows/) em **Workflows → Import from File**.
 
-### Depois de logar (as duas opções)
+### Depois de logar (todas as opções)
 
 1. Siga a seção **Pré-requisitos** do **[guia completo](docs/guia-linkedin-n8n.md)** para conectar as credenciais (LinkedIn OAuth, Notion, Todoist, OpenAI, Apify) — esse passo é sempre manual porque exige login nas suas contas.
 2. Complete os campos entre colchetes nos prompts de IA (nome, cidade, inglês, contato). Os prompts já vêm configurados para o perfil **RH · Química · Offshore** em início de carreira.
