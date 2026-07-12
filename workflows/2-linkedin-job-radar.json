@@ -1,0 +1,372 @@
+{
+  "name": "2 · LinkedIn — Radar de vagas com IA",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "id": "schedule-2",
+      "name": "Todo dia às 8h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 8 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "apify-1",
+      "name": "Buscar vagas (Apify)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 0],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/k1ra~linkedin-jobs-scraper/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"keywords\": \"desenvolvedor OR developer\",\n  \"location\": \"Brazil\",\n  \"workplace\": [\"remote\", \"hybrid\"],\n  \"postedWithin\": \"24h\",\n  \"excludeRecruiters\": true,\n  \"maxResults\": 50,\n  \"includeDescription\": true\n}",
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "notesInFlow": true,
+      "notes": "Edite keywords/location. Credencial Header Auth: Authorization = Bearer SEU_TOKEN_APIFY"
+    },
+    {
+      "id": "dedupe-1",
+      "name": "Remover vagas já vistas",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [440, 0],
+      "parameters": {
+        "operation": "removeItemsSeenInPreviousExecutions",
+        "logic": "removeItemsWithAlreadySeenKeyValues",
+        "dedupeValue": "={{ $json.jobUrl }}",
+        "options": {
+          "historySize": 5000
+        }
+      }
+    },
+    {
+      "id": "filter-2",
+      "name": "Filtrar por título",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [660, 0],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "combinator": "or",
+          "conditions": [
+            {
+              "id": "t1",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "desenvolvedor",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "t2",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "developer",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "t3",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "engineer",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ]
+        }
+      },
+      "notesInFlow": true,
+      "notes": "Troque pelas palavras-chave da sua área"
+    },
+    {
+      "id": "openai-2",
+      "name": "Pontuar com IA",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [880, 0],
+      "parameters": {
+        "resource": "text",
+        "operation": "message",
+        "modelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "jsonOutput": true,
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Você é um recrutador técnico. Avalie o fit entre o candidato e a vaga.\n\nPERFIL DO CANDIDATO (EDITE ESTE BLOCO COM SEU PERFIL REAL):\n- Cargo atual: [ex.: Desenvolvedor Full Stack Pleno]\n- Stack: [ex.: TypeScript, React, Node.js, PostgreSQL]\n- Anos de experiência: [ex.: 5]\n- Idiomas: [ex.: português nativo, inglês avançado]\n- Preferências: [ex.: remoto, CLT ou PJ, pretensão R$ X]\n- Não aceito: [ex.: presencial fora de SP, vagas júnior]\n\nResponda SOMENTE com JSON válido neste formato:\n{\n  \"score\": <número de 0 a 10>,\n  \"justificativa\": \"<2 a 3 frases explicando o score>\",\n  \"pontos_de_atencao\": \"<requisitos que o candidato não atende, ou 'nenhum'>\"\n}"
+            },
+            {
+              "role": "user",
+              "content": "=Vaga: {{ $json.title }}\nEmpresa: {{ $json.company }}\nLocal: {{ $json.location }}\nTipo: {{ $json.employmentType }} · {{ $json.seniorityLevel }}\nSalário: {{ $json.salaryText || 'não informado' }}\n\nDescrição:\n{{ ($json.description || '').slice(0, 6000) }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "merge-fields-1",
+      "name": "Juntar vaga + análise",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1100, 0],
+      "parameters": {
+        "mode": "manual",
+        "includeOtherFields": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1",
+              "name": "titulo",
+              "type": "string",
+              "value": "={{ $('Filtrar por título').item.json.title }}"
+            },
+            {
+              "id": "a2",
+              "name": "empresa",
+              "type": "string",
+              "value": "={{ $('Filtrar por título').item.json.company }}"
+            },
+            {
+              "id": "a3",
+              "name": "local",
+              "type": "string",
+              "value": "={{ $('Filtrar por título').item.json.location }}"
+            },
+            {
+              "id": "a4",
+              "name": "link",
+              "type": "string",
+              "value": "={{ $('Filtrar por título').item.json.jobUrl }}"
+            },
+            {
+              "id": "a5",
+              "name": "score",
+              "type": "number",
+              "value": "={{ $json.message.content.score }}"
+            },
+            {
+              "id": "a6",
+              "name": "justificativa",
+              "type": "string",
+              "value": "={{ $json.message.content.justificativa }}"
+            },
+            {
+              "id": "a7",
+              "name": "pontos_de_atencao",
+              "type": "string",
+              "value": "={{ $json.message.content.pontos_de_atencao }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "if-score-1",
+      "name": "Score ≥ 7?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1320, 0],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "s1",
+              "leftValue": "={{ $json.score }}",
+              "rightValue": 7,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "notion-create-2",
+      "name": "Salvar no Radar de Vagas",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1540, -100],
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "title": "={{ $json.titulo }} — {{ $json.empresa }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Empresa|rich_text",
+              "textContent": "={{ $json.empresa }}"
+            },
+            {
+              "key": "Localização|rich_text",
+              "textContent": "={{ $json.local }}"
+            },
+            {
+              "key": "Link|url",
+              "urlValue": "={{ $json.link }}"
+            },
+            {
+              "key": "Score|number",
+              "numberValue": "={{ $json.score }}"
+            },
+            {
+              "key": "Análise|rich_text",
+              "textContent": "={{ $json.justificativa }}\n\nPontos de atenção: {{ $json.pontos_de_atencao }}"
+            },
+            {
+              "key": "Status|select",
+              "selectValue": "Novo"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "notesInFlow": true,
+      "notes": "Selecione o banco 'Radar de Vagas'"
+    },
+    {
+      "id": "noop-1",
+      "name": "Descartada (score baixo)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1540, 100],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Todo dia às 8h": {
+      "main": [
+        [
+          {
+            "node": "Buscar vagas (Apify)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar vagas (Apify)": {
+      "main": [
+        [
+          {
+            "node": "Remover vagas já vistas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remover vagas já vistas": {
+      "main": [
+        [
+          {
+            "node": "Filtrar por título",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrar por título": {
+      "main": [
+        [
+          {
+            "node": "Pontuar com IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pontuar com IA": {
+      "main": [
+        [
+          {
+            "node": "Juntar vaga + análise",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Juntar vaga + análise": {
+      "main": [
+        [
+          {
+            "node": "Score ≥ 7?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Score ≥ 7?": {
+      "main": [
+        [
+          {
+            "node": "Salvar no Radar de Vagas",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Descartada (score baixo)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {}
+}

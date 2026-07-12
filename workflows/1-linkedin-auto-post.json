@@ -1,0 +1,231 @@
+{
+  "name": "1 · LinkedIn — Publicação automática",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "id": "schedule-1",
+      "name": "Seg/Qua/Sex às 9h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * 1,3,5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "notion-get-1",
+      "name": "Buscar posts no Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [220, 0],
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "notesInFlow": true,
+      "notes": "Selecione o banco 'Fila de Posts LinkedIn'"
+    },
+    {
+      "id": "filter-1",
+      "name": "Só posts com Status = Pronto",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [440, 0],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.property_status }}",
+              "rightValue": "Pronto",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "limit-1",
+      "name": "Pegar 1 post",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [660, 0],
+      "parameters": {
+        "maxItems": 1
+      }
+    },
+    {
+      "id": "openai-1",
+      "name": "Refinar post com IA",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [880, 0],
+      "parameters": {
+        "resource": "text",
+        "operation": "message",
+        "modelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Você é um ghostwriter de LinkedIn. Transforme o rascunho abaixo em um post pronto para publicar, em português brasileiro.\n\nSOBRE MIM (EDITE ESTE BLOCO):\n- Área: [sua área, ex.: desenvolvimento de software]\n- Tom de voz: direto, pessoal, sem clichês corporativos\n- Objetivo: construir autoridade e atrair recrutadores\n\nREGRAS DO POST:\n- Primeira linha precisa ser um gancho forte (sem 'Olá rede!')\n- Parágrafos de no máximo 2 linhas, com espaçamento\n- Máximo de 1.300 caracteres\n- Termine com uma pergunta ou chamada para comentar\n- 3 a 5 hashtags relevantes no final\n- Responda SOMENTE com o texto final do post, sem comentários extras"
+            },
+            {
+              "role": "user",
+              "content": "=Tema: {{ $json.name }}\n\nRascunho:\n{{ $json.property_rascunho }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "linkedin-1",
+      "name": "Publicar no LinkedIn",
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [1100, 0],
+      "parameters": {
+        "postAs": "person",
+        "person": "",
+        "text": "={{ $json.message.content }}",
+        "shareMediaCategory": "NONE",
+        "additionalFields": {}
+      },
+      "notesInFlow": true,
+      "notes": "Selecione sua credencial e sua Person. Requer n8n >= 2.18.0"
+    },
+    {
+      "id": "notion-update-1",
+      "name": "Marcar como Publicado",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1320, 0],
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $('Pegar 1 post').item.json.id }}"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Status|select",
+              "selectValue": "Publicado"
+            },
+            {
+              "key": "Publicado em|date",
+              "range": false,
+              "includeTime": true,
+              "date": "={{ $now.toISO() }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Seg/Qua/Sex às 9h": {
+      "main": [
+        [
+          {
+            "node": "Buscar posts no Notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar posts no Notion": {
+      "main": [
+        [
+          {
+            "node": "Só posts com Status = Pronto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Só posts com Status = Pronto": {
+      "main": [
+        [
+          {
+            "node": "Pegar 1 post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pegar 1 post": {
+      "main": [
+        [
+          {
+            "node": "Refinar post com IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Refinar post com IA": {
+      "main": [
+        [
+          {
+            "node": "Publicar no LinkedIn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publicar no LinkedIn": {
+      "main": [
+        [
+          {
+            "node": "Marcar como Publicado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {}
+}

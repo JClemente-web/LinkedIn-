@@ -1,0 +1,216 @@
+{
+  "name": "3 · LinkedIn — Assistente de aplicação",
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "id": "schedule-3",
+      "name": "A cada 2 horas",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "notion-get-3",
+      "name": "Buscar vagas no Radar",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [220, 0],
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "notesInFlow": true,
+      "notes": "Selecione o banco 'Radar de Vagas'"
+    },
+    {
+      "id": "filter-3",
+      "name": "Só Status = Aplicar",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [440, 0],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.property_status }}",
+              "rightValue": "Aplicar",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "openai-3",
+      "name": "Gerar carta de apresentação",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [660, 0],
+      "parameters": {
+        "resource": "text",
+        "operation": "message",
+        "modelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Você escreve cartas de apresentação curtas e específicas para vagas.\n\nSOBRE MIM (EDITE ESTE BLOCO COM SEU PERFIL REAL):\n- Nome: [seu nome]\n- Resumo: [ex.: Desenvolvedor Full Stack com 5 anos de experiência em TypeScript/React/Node]\n- 2 a 3 conquistas com números: [ex.: reduzi tempo de build em 40%; liderei migração usada por 200k usuários]\n- Link do portfólio/GitHub: [url]\n\nREGRAS:\n- Máximo 150 palavras, 3 parágrafos\n- Mencione a empresa e a vaga pelo nome; conecte 1 conquista minha a 1 requisito da vaga\n- Sem clichês ('sou apaixonado por tecnologia', 'trabalho em equipe')\n- Escreva no idioma da vaga (título em inglês = carta em inglês)\n- Responda SOMENTE com o texto da carta"
+            },
+            {
+              "role": "user",
+              "content": "=Vaga: {{ $json.name }}\nEmpresa: {{ $json.property_empresa }}\nLocal: {{ $json.property_localiza_o }}\n\nAnálise de fit feita anteriormente:\n{{ $json.property_an_lise }}"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "notion-update-3",
+      "name": "Salvar carta e marcar Aplicado",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [880, 0],
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $('Só Status = Aplicar').item.json.id }}"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Carta|rich_text",
+              "textContent": "={{ $json.message.content }}"
+            },
+            {
+              "key": "Status|select",
+              "selectValue": "Aplicado"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "todoist-1",
+      "name": "Criar tarefa no Todoist",
+      "type": "n8n-nodes-base.todoist",
+      "typeVersion": 2.1,
+      "position": [1100, 0],
+      "parameters": {
+        "resource": "task",
+        "operation": "create",
+        "project": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "content": "=Aplicar: {{ $('Só Status = Aplicar').item.json.name }}",
+        "options": {
+          "description": "=Vaga: {{ $('Só Status = Aplicar').item.json.property_link }}\n\nScore: {{ $('Só Status = Aplicar').item.json.property_score }}/10\n\nAnálise:\n{{ $('Só Status = Aplicar').item.json.property_an_lise }}\n\n--- CARTA (copiar e colar) ---\n{{ $('Gerar carta de apresentação').item.json.message.content }}",
+          "dueString": "today",
+          "priority": 3
+        }
+      },
+      "notesInFlow": true,
+      "notes": "Selecione o projeto 'Vagas'"
+    }
+  ],
+  "connections": {
+    "A cada 2 horas": {
+      "main": [
+        [
+          {
+            "node": "Buscar vagas no Radar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar vagas no Radar": {
+      "main": [
+        [
+          {
+            "node": "Só Status = Aplicar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Só Status = Aplicar": {
+      "main": [
+        [
+          {
+            "node": "Gerar carta de apresentação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gerar carta de apresentação": {
+      "main": [
+        [
+          {
+            "node": "Salvar carta e marcar Aplicado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salvar carta e marcar Aplicado": {
+      "main": [
+        [
+          {
+            "node": "Criar tarefa no Todoist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {}
+}
