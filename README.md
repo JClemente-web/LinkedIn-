@@ -61,11 +61,22 @@ n8n import:workflow --separate --input=caminho/para/LinkedIn-/workflows
 1. Crie uma conta em [n8n.io](https://n8n.io).
 2. Importe cada JSON da pasta [`workflows/`](workflows/) em **Workflows → Import from File**.
 
+### Antes de importar: preencha seu perfil com 1 comando
+
+Na pasta do projeto, rode:
+
+```bash
+node preencher-perfil.js
+```
+
+O script faz 6 perguntas (nome, cidade, contato, experiência de caldeiraria, IRATA, programação) e grava as respostas nos 3 workflows automaticamente. Pode rodar de novo sempre que quiser atualizar (os originais ficam salvos como `.bak`).
+
+> Se estiver usando a Opção A (Docker), rode o script **antes** do `docker compose up -d`, para o n8n já subir com os workflows preenchidos.
+
 ### Depois de logar (todas as opções)
 
 1. Siga a seção **Pré-requisitos** do **[guia completo](docs/guia-linkedin-n8n.md)** para conectar as credenciais (LinkedIn OAuth, Notion, Todoist, OpenAI, Apify) — esse passo é sempre manual porque exige login nas suas contas.
-2. Complete os campos entre colchetes nos prompts de IA (nome, cidade, inglês, contato). Os prompts já vêm configurados para o perfil **RH · Química · Offshore** em início de carreira.
-3. Rode cada workflow manualmente uma vez para testar e depois ative os agendamentos (toggle **Active**).
+2. Rode cada workflow manualmente uma vez para testar e depois ative os agendamentos (toggle **Active**).
 
 ## Estratégia de carreira
 
