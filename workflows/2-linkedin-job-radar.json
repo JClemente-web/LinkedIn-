@@ -1,5 +1,5 @@
 {
-  "name": "2 · LinkedIn — Radar de vagas BI/Dados",
+  "name": "2 · LinkedIn — Radar BI + programação para dados",
   "active": false,
   "settings": {
     "executionOrder": "v1"
@@ -27,7 +27,7 @@
     },
     {
       "id": "areas-1",
-      "name": "Definir buscas (BI)",
+      "name": "Definir buscas (BI + dados)",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
@@ -35,7 +35,7 @@
         0
       ],
       "parameters": {
-        "jsCode": "// Radar focado na área mais forte do LinkedIn: BI / Análise de Dados\nreturn [\n  {\n    json: {\n      area: 'BI/Power BI',\n      keywords: '\"power bi\" OR \"analista de bi\" OR \"assistente de bi\" OR \"analista de business intelligence\" OR dashboard'\n    }\n  },\n  {\n    json: {\n      area: 'Analista de Dados',\n      keywords: '\"analista de dados\" OR \"assistente de dados\" OR \"analista de dados júnior\" OR \"estágio dados\" OR \"estágio power bi\"'\n    }\n  },\n  {\n    json: {\n      area: 'SQL/Excel BI',\n      keywords: 'sql AND (excel OR \"power bi\" OR dashboard OR indicadores OR kpi)'\n    }\n  }\n];"
+        "jsCode": "// Radar: BI / Dados + Programação orientada a dados\nreturn [\n  {\n    json: {\n      area: 'BI/Power BI',\n      keywords: '\"power bi\" OR \"analista de bi\" OR \"assistente de bi\" OR \"analista de business intelligence\" OR dashboard'\n    }\n  },\n  {\n    json: {\n      area: 'Analista de Dados',\n      keywords: '\"analista de dados\" OR \"assistente de dados\" OR \"analista de dados júnior\" OR \"estágio dados\" OR \"estágio power bi\"'\n    }\n  },\n  {\n    json: {\n      area: 'Programação orientada a dados',\n      keywords: 'python AND (dados OR \"data analytics\" OR pandas OR \"analista de dados\" OR etl OR sql) OR \"python para dados\" OR \"engenharia de dados júnior\" OR \"estágio python\"'\n    }\n  }\n];"
       }
     },
     {
@@ -224,6 +224,33 @@
                 "type": "string",
                 "operation": "contains"
               }
+            },
+            {
+              "id": "t15",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "python",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "t16",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "pandas",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "t17",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "etl",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
             }
           ]
         }
@@ -254,7 +281,7 @@
           "values": [
             {
               "role": "system",
-              "content": "Você é um recrutador de dados/BI. Avalie o fit entre o candidato e a vaga.\n\nPERFIL — João Vítor Clemente Ferreira · Magé/RJ · (21) 97726-9184\n- Foco exclusivo: Business Intelligence / Análise de Dados\n- Experiência: Assistente Administrativo na SEPLAG Niterói (desde mar/2025), atuando na equipe de BI\n  Entregas: dashboards Power BI, limpeza de dados e scripts SQL, migração de planilhas Excel para Power BI, documentação de processos, atualização de indicadores diários para operações\n- Formação complementar: Universo BI Treinamentos (desde jan/2025)\n- Cursos superiores em andamento: Análise e Desenvolvimento de Sistemas (UNINTER); Engenharia de Software (UNINTER); Gestão de RH (Estácio); Economia (Estácio) — reforçam lógica, processos e visão de negócio, mas o alvo de carreira AGORA é BI/dados\n- Stack: Power BI, Excel, SQL, dashboards, KPIs/indicadores, modelagem básica de dados\n- Inglês: básico (NÃO fluente)\n- Busca: vagas de ENTRADA/JÚNIOR — Analista de Dados Júnior, Assistente de BI, Analista de BI Júnior, Estágio em BI/Dados, Assistente de Business Intelligence\n- Aceita: remoto, híbrido ou presencial (RJ/Magé/Niterói e região); CLT ou temporário; disponibilidade\n\nCRITÉRIOS DE SCORE:\n- Vagas júnior/assistente/estágio pedindo Power BI, Excel e/ou SQL: score 8–10\n- Vagas que peçam dashboards, indicadores, KPIs, migração Excel→BI: score alto\n- Vagas pleno/sênior, \"gestor de BI\", 3+ anos, SAS avançado, engenharia de dados pesada: score 0–4\n- Vagas que exijam inglês fluente: score 0–4\n- Vagas fora de BI/dados (mesmo que administrativas): score baixo, a menos que tenham forte componente de indicadores/relatórios\n\nResponda SOMENTE com JSON válido:\n{\n  \"score\": <0 a 10>,\n  \"justificativa\": \"<2 a 3 frases>\",\n  \"pontos_de_atencao\": \"<gaps ou 'nenhum'>\"\n}"
+              "content": "Você é um recrutador de dados/BI. Avalie o fit entre o candidato e a vaga.\n\nPERFIL — João Vítor Clemente Ferreira · Magé/RJ · (21) 97726-9184\n- Foco: Business Intelligence / Análise de Dados + Programação orientada a dados (não fullstack genérico)\n- Experiência: Assistente Administrativo na SEPLAG Niterói (desde mar/2025), equipe de BI\n  Entregas: dashboards Power BI, limpeza de dados e scripts SQL, migração Excel → Power BI, indicadores diários, documentação de processos\n- Formação: Universo BI Treinamentos; Análise e Desenvolvimento de Sistemas + Engenharia de Software (UNINTER) — base para programação aplicada a dados; Gestão de RH e Economia (Estácio)\n- Stack: Power BI, Excel, SQL, dashboards, KPIs; programação orientada a dados em formação (Python/lógica via ADS — nível júnior/aprendizado, sem vender como sênior)\n- Inglês: básico (NÃO fluente)\n- Busca: Analista de Dados Júnior, Assistente de BI, Estágio BI/Dados, vagas júnior/estágio de Python para dados / analytics\n- Aceita: remoto, híbrido ou presencial (RJ/Magé/Niterói); CLT, estágio ou temporário\n\nCRITÉRIOS DE SCORE:\n- Júnior/assistente/estágio com Power BI, Excel e/ou SQL: score 8–10\n- Júnior/estágio pedindo Python para análise de dados, pandas, SQL + scripts, automação de relatórios: score 7–9 (em formação, alinhado ao ADS)\n- Dashboards, KPIs, Excel→BI: score alto\n- Fullstack genérico, front-end puro, mobile, ou backend sem foco em dados: score 0–3\n- Pleno/sênior, gestor de BI, 3+ anos, engenharia de dados avançada, Spark/Airflow pesado: score 0–4\n- Inglês fluente obrigatório: score 0–4\n\nResponda SOMENTE com JSON válido:\n{\n  \"score\": <0 a 10>,\n  \"justificativa\": \"<2 a 3 frases>\",\n  \"pontos_de_atencao\": \"<gaps ou 'nenhum'>\"\n}"
             },
             {
               "role": "user",

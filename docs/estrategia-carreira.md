@@ -1,19 +1,14 @@
 # Estratégia — foco único: BI / Análise de Dados
 
-**Escolha feita:** a área mais completa e alinhada ao LinkedIn é **Business Intelligence / Análise de Dados**.
+**Escolha feita:** **BI / Análise de Dados** + **programação orientada a dados** (SQL/Python via ADS — não fullstack).
 
-Guia completo para deixar o perfil brabo (textos prontos pra colar): **[linkedin-modo-brabo.md](linkedin-modo-brabo.md)**  
-Auditoria anterior do perfil: **[analise-linkedin.md](analise-linkedin.md)**
+Guia com textos prontos: **[linkedin-modo-brabo.md](linkedin-modo-brabo.md)**  
 
-## Por que BI ganhou das outras
-
-| Área | Completude no LinkedIn | Veredito |
-|---|---|---|
-| **BI / Dados** | Emprego SEPLAG + entregas + Universo BI + headline | **Plano A** |
-| RH | Formação Estácio, sem experiência formal | Plano B futuro |
-| Química | Declarada, quase ausente no perfil | Freeze |
-| Caldeiraria / IRATA | Em formação, ausente no perfil | Freeze até certificado |
-| Full Stack / ADS | Cursando UNINTER | Apoio de longo prazo, não identidade |
+| Área | Veredito |
+|---|---|
+| **BI + programação para dados** | **Plano A** |
+| Fullstack / front / mobile | Evitar como identidade |
+| RH, Química, Caldeiraria/IRATA | Freeze até ter prova no LinkedIn |
 
 ## Rotina
 

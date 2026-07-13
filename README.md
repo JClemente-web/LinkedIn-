@@ -1,12 +1,12 @@
 # LinkedIn + n8n — Automação de perfil e busca de vagas
 
-Automação em três workflows n8n focados na área mais forte do perfil — **BI / Análise de Dados** (SEPLAG Niterói · Power BI · SQL · Excel):
+Automação em três workflows n8n focados em **BI / Análise de Dados** + **programação orientada a dados** (SEPLAG · Power BI · SQL · Excel · ADS):
 
 | # | Workflow | O que faz | Frequência |
 |---|---|---|---|
-| 1 | [`workflows/1-linkedin-auto-post.json`](workflows/1-linkedin-auto-post.json) | Posts de autoridade em BI a partir do Notion | Seg/Qua/Sex 9h |
-| 2 | [`workflows/2-linkedin-job-radar.json`](workflows/2-linkedin-job-radar.json) | Radar de vagas BI/Power BI/Analista de Dados com score por IA | Diário 8h |
-| 3 | [`workflows/3-linkedin-application-assistant.json`](workflows/3-linkedin-application-assistant.json) | Carta de apresentação BI + tarefa no Todoist | A cada 2h |
+| 1 | [`workflows/1-linkedin-auto-post.json`](workflows/1-linkedin-auto-post.json) | Posts de BI e programação para dados | Seg/Qua/Sex 9h |
+| 2 | [`workflows/2-linkedin-job-radar.json`](workflows/2-linkedin-job-radar.json) | Radar: Power BI / Analista de Dados / Python+SQL para dados | Diário 8h |
+| 3 | [`workflows/3-linkedin-application-assistant.json`](workflows/3-linkedin-application-assistant.json) | Carta BI/dados + tarefa no Todoist | A cada 2h |
 
 ## Como começar
 

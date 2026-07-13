@@ -111,7 +111,7 @@ Oi, [Nome] — acompanho seu conteúdo de BI. Atuo com Power BI/SQL na SEPLAG Ni
 ## O que NÃO colocar na headline/Sobre agora
 
 - Caldeireiro / IRATA / offshore / Química como identidade principal  
-- “Full Stack” como cargo (você está cursando ADS — cite em formação, não como título)  
+- “Full Stack” como cargo (cite ADS como formação em **programação orientada a dados**, não como título fullstack)  
 - “Gestor de BI”  
 - Inglês fluente  
 
