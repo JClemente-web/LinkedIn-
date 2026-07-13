@@ -43,9 +43,9 @@ const PERGUNTAS = [
     token: "__PROGRAMACAO__",
     pergunta: "Sua experiência com programação",
     exemplo:
-      "ex.: cursando Full Stack (Fostec · Firjan/Cerratec · Senai) (Enter aceita esse texto)",
+      "ex.: cursando Full Stack (Firjan · Serratec · Senai) (Enter aceita esse texto)",
     padrao:
-      "cursando Full Stack (Fostec · Firjan/Cerratec · Senai) — ainda em formação, sem experiência profissional",
+      "cursando Full Stack (Firjan · Serratec · Senai) — ainda em formação, sem experiência profissional",
   },
 ];
 
