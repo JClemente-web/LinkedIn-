@@ -1,12 +1,12 @@
 # LinkedIn + n8n — Automação de perfil e busca de vagas
 
-Automação em três workflows n8n para manter o LinkedIn ativo e acelerar a busca de vagas, integrada com Notion e Todoist:
+Automação em três workflows n8n focados na área mais forte do perfil — **BI / Análise de Dados** (SEPLAG Niterói · Power BI · SQL · Excel):
 
 | # | Workflow | O que faz | Frequência |
 |---|---|---|---|
-| 1 | [`workflows/1-linkedin-auto-post.json`](workflows/1-linkedin-auto-post.json) | Publica posts no LinkedIn a partir de uma fila no Notion, refinados por IA | Seg/Qua/Sex 9h |
-| 2 | [`workflows/2-linkedin-job-radar.json`](workflows/2-linkedin-job-radar.json) | Coleta vagas do LinkedIn (Apify), pontua com IA vs. seu perfil e salva as melhores no Notion | Diário 8h |
-| 3 | [`workflows/3-linkedin-application-assistant.json`](workflows/3-linkedin-application-assistant.json) | Para vagas aprovadas, gera carta de apresentação por IA e cria tarefa no Todoist pronta para aplicar | A cada 2h |
+| 1 | [`workflows/1-linkedin-auto-post.json`](workflows/1-linkedin-auto-post.json) | Posts de autoridade em BI a partir do Notion | Seg/Qua/Sex 9h |
+| 2 | [`workflows/2-linkedin-job-radar.json`](workflows/2-linkedin-job-radar.json) | Radar de vagas BI/Power BI/Analista de Dados com score por IA | Diário 8h |
+| 3 | [`workflows/3-linkedin-application-assistant.json`](workflows/3-linkedin-application-assistant.json) | Carta de apresentação BI + tarefa no Todoist | A cada 2h |
 
 ## Como começar
 
@@ -79,7 +79,8 @@ node preencher-perfil.js
 
 ## Estratégia de carreira
 
-- Análise do seu LinkedIn (o que está forte, o que está desalinhado e o que mudar): **[docs/analise-linkedin.md](docs/analise-linkedin.md)**
-- Plano das trilhas (BI · RH · campo · TI): **[docs/estrategia-carreira.md](docs/estrategia-carreira.md)**
+- **Decisão de foco:** BI / Análise de Dados — textos prontos pra colar no LinkedIn: **[docs/linkedin-modo-brabo.md](docs/linkedin-modo-brabo.md)**
+- Auditoria do perfil: **[docs/analise-linkedin.md](docs/analise-linkedin.md)**
+- Resumo das trilhas: **[docs/estrategia-carreira.md](docs/estrategia-carreira.md)**
 
 > **Importante:** aplicar automaticamente (bot clicando em "Easy Apply") viola os Termos do LinkedIn e arrisca banimento. A arquitetura aqui é *human-in-the-loop*: a automação encontra, filtra, pontua e prepara a carta — o clique final de aplicar é seu. Detalhes no guia.

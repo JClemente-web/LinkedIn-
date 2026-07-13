@@ -1,27 +1,23 @@
-# Estratégia de carreira — João Vítor Clemente Ferreira
+# Estratégia — foco único: BI / Análise de Dados
 
-Baseado no [LinkedIn](https://www.linkedin.com/in/jo%C3%A3ovitorclementeferreira-8b383625a) + o que você declarou. Análise detalhada do perfil: [`analise-linkedin.md`](analise-linkedin.md).
+**Escolha feita:** a área mais completa e alinhada ao LinkedIn é **Business Intelligence / Análise de Dados**.
 
-## Quem você é no papel (comprovado)
+Guia completo para deixar o perfil brabo (textos prontos pra colar): **[linkedin-modo-brabo.md](linkedin-modo-brabo.md)**  
+Auditoria anterior do perfil: **[analise-linkedin.md](analise-linkedin.md)**
 
-- **Emprego atual:** Assistente Administrativo na **SEPLAG Niterói** (equipe de BI) — Power BI, SQL, Excel, dashboards, indicadores
-- **Formação em andamento:** ADS + Engenharia de Software (UNINTER); Gestão de RH + Economia (Estácio); Universo BI
-- **Local:** Magé/RJ · Contato: (21) 97726-9184
-- **Em formação (declarado, ainda pouco/nada no LinkedIn):** caldeireiro, IRATA Nível 1, técnico em Química, certificado de embarque
+## Por que BI ganhou das outras
 
-## Prioridade de esforço
-
-| Trilha | Por quê | Esforço |
+| Área | Completude no LinkedIn | Veredito |
 |---|---|---|
-| **A — BI / Dados** | É o que o LinkedIn e a SEPLAG **provam**. Melhor chance de promoção ou vaga melhor agora | 40% |
-| **B — RH / DP** | Formação Estácio + vivência administrativa | 20% |
-| **C — Documentar e concluir campo** | Caldeiraria + IRATA L1 + Química no LinkedIn **e** nos certificados — sem isso, o radar acha vaga e o recrutador não te vê | 25% |
-| **D — ADS / desenvolvimento** | Longo prazo (UNINTER); estágio quando o curso avançar | 15% |
+| **BI / Dados** | Emprego SEPLAG + entregas + Universo BI + headline | **Plano A** |
+| RH | Formação Estácio, sem experiência formal | Plano B futuro |
+| Química | Declarada, quase ausente no perfil | Freeze |
+| Caldeiraria / IRATA | Em formação, ausente no perfil | Freeze até certificado |
+| Full Stack / ADS | Cursando UNINTER | Apoio de longo prazo, não identidade |
 
-## Headline sugerida
+## Rotina
 
-`Assistente Administrativo · BI | Power BI · SQL · Excel | Gestão de RH & Economia | Magé/RJ`
-
-## Sistema n8n
-
-Já preenchido com este perfil. 5 buscas diárias (BI → RH → Química → Caldeiraria/IRATA → TI). Reimporte os JSONs após puxar do GitHub.
+1. Atualizar LinkedIn com os textos de `linkedin-modo-brabo.md` (hoje)  
+2. Reimportar os 3 workflows BI no n8n  
+3. Todo dia: revisar Radar → marcar Aplicar → enviar candidaturas das tarefas Todoist  
+4. Seg/Qua/Sex: post de BI (Workflow 1)

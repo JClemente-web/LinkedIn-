@@ -1,5 +1,5 @@
 {
-  "name": "2 · LinkedIn — Radar de vagas com IA",
+  "name": "2 · LinkedIn — Radar de vagas BI/Dados",
   "active": false,
   "settings": {
     "executionOrder": "v1"
@@ -27,7 +27,7 @@
     },
     {
       "id": "areas-1",
-      "name": "Definir buscas (3 áreas)",
+      "name": "Definir buscas (BI)",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
@@ -35,7 +35,7 @@
         0
       ],
       "parameters": {
-        "jsCode": "// Uma busca por área — edite as palavras-chave à vontade.\n// Cada item vira uma chamada separada à Apify.\nreturn [\n  {\n    json: {\n      area: 'BI/Dados',\n      keywords: '\"power bi\" OR \"analista de dados\" OR \"business intelligence\" OR \"assistente de bi\" OR sql OR dashboard'\n    }\n  },\n  {\n    json: {\n      area: 'RH',\n      keywords: '\"recursos humanos\" OR recrutamento OR \"departamento pessoal\" OR \"analista de rh\" OR \"assistente de rh\"'\n    }\n  },\n  {\n    json: {\n      area: 'Química',\n      keywords: 'químico OR química OR laboratório OR \"técnico químico\"'\n    }\n  },\n  {\n    json: {\n      area: 'Caldeiraria/Offshore/IRATA',\n      keywords: 'caldeireiro OR caldeiraria OR offshore OR embarcado OR plataforma OR IRATA OR \"acesso por corda\" OR \"trabalho em altura\"'\n    }\n  },\n  {\n    json: {\n      area: 'Programação/TI',\n      keywords: 'desenvolvedor OR programador OR \"full stack\" OR \"desenvolvedor júnior\" OR \"estágio desenvolvimento\" OR \"analise e desenvolvimento\"'\n    }\n  }\n];"
+        "jsCode": "// Radar focado na área mais forte do LinkedIn: BI / Análise de Dados\nreturn [\n  {\n    json: {\n      area: 'BI/Power BI',\n      keywords: '\"power bi\" OR \"analista de bi\" OR \"assistente de bi\" OR \"analista de business intelligence\" OR dashboard'\n    }\n  },\n  {\n    json: {\n      area: 'Analista de Dados',\n      keywords: '\"analista de dados\" OR \"assistente de dados\" OR \"analista de dados júnior\" OR \"estágio dados\" OR \"estágio power bi\"'\n    }\n  },\n  {\n    json: {\n      area: 'SQL/Excel BI',\n      keywords: 'sql AND (excel OR \"power bi\" OR dashboard OR indicadores OR kpi)'\n    }\n  }\n];"
       }
     },
     {
@@ -102,7 +102,7 @@
             {
               "id": "t1",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "rh",
+              "rightValue": "power bi",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -111,7 +111,7 @@
             {
               "id": "t2",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "recursos humanos",
+              "rightValue": "dados",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -120,7 +120,7 @@
             {
               "id": "t3",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "recrutamento",
+              "rightValue": "business",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -129,7 +129,7 @@
             {
               "id": "t4",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "pessoal",
+              "rightValue": "dashboard",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -138,7 +138,7 @@
             {
               "id": "t5",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "quím",
+              "rightValue": "sql",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -147,7 +147,7 @@
             {
               "id": "t6",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "quim",
+              "rightValue": "excel",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -156,7 +156,7 @@
             {
               "id": "t7",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "laborat",
+              "rightValue": "bi ",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -165,7 +165,7 @@
             {
               "id": "t8",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "offshore",
+              "rightValue": "inteligência",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -174,7 +174,7 @@
             {
               "id": "t9",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "embarcado",
+              "rightValue": "inteligencia",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -183,7 +183,7 @@
             {
               "id": "t10",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "plataforma",
+              "rightValue": "indicador",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -192,7 +192,7 @@
             {
               "id": "t11",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "atendimento",
+              "rightValue": "kpi",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -201,7 +201,7 @@
             {
               "id": "t12",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "administrativo",
+              "rightValue": "relatório",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -210,7 +210,7 @@
             {
               "id": "t13",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "desenvolv",
+              "rightValue": "relatorio",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -219,124 +219,7 @@
             {
               "id": "t14",
               "leftValue": "={{ $json.title }}",
-              "rightValue": "program",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t15",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "suporte",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t16",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "dados",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t17",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "full stack",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t18",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "irata",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t19",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "altura",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t20",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "corda",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t21",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "alpinis",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t22",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "caldeir",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t23",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "power bi",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t25",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "business",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t26",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "dashboard",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t27",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "sql",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "t28",
-              "leftValue": "={{ $json.title }}",
-              "rightValue": "excel",
+              "rightValue": "analytics",
               "operator": {
                 "type": "string",
                 "operation": "contains"
@@ -346,7 +229,7 @@
         }
       },
       "notesInFlow": true,
-      "notes": "Troque pelas palavras-chave da sua área"
+      "notes": "Filtro focado em títulos de BI/dados"
     },
     {
       "id": "openai-2",
@@ -371,7 +254,7 @@
           "values": [
             {
               "role": "system",
-              "content": "Você é um recrutador experiente. Avalie o fit entre o candidato e a vaga.\n\nPERFIL DO CANDIDATO (fonte: LinkedIn + declaração do candidato):\n- Nome: João Vítor Clemente Ferreira · Magé/RJ · (21) 97726-9184\n- Headline atual no LinkedIn: BI / Análise de dados / Power BI / SQL / Gestão RH\n- Experiência atual: Assistente Administrativo na SEPLAG Niterói (desde mar/2025) — apoia equipe de BI: dashboards Power BI, limpeza de dados e scripts SQL, migração de Excel para Power BI, documentação de processos e indicadores diários\n- Também: Analista de Dados em formação na Universo BI Treinamentos (desde jan/2025)\n- Formação em andamento: Análise e Desenvolvimento de Sistemas (UNINTER, 2025–2027); Engenharia de Software (UNINTER, 2025–2028); Gestão de RH (Estácio, 2024–2026); Ciências Econômicas (Estácio, desde 2023)\n- Declara também: técnico em Química (4 meses de prática); cursando caldeireiro; IRATA Nível 1 em processo; certificado de segurança para embarque — estes itens NÃO aparecem no LinkedIn público ainda\n- Idiomas: português nativo; inglês básico (NÃO fluente)\n- Objetivo: vagas de ENTRADA/JÚNIOR/ASSISTENTE/ESTÁGIO em: (1) BI / dados / Power BI / SQL, (2) RH / DP / recrutamento, (3) Química / laboratório, (4) caldeiraria / offshore / IRATA (quando documentos fecharem), (5) desenvolvimento júnior / estágio\n- Aceita: remoto, híbrido, presencial ou embarcado; CLT, PJ ou temporário\n\nCRITÉRIOS DE SCORE:\n- Vagas de ENTRADA em BI/dados (assistente, analista júnior, estágio) pedindo Power BI / Excel / SQL: score 8–10 — é o que o LinkedIn e a SEPLAG comprovam\n- Vagas de ENTRADA em RH/DP: score alto (formação Estácio + Gestão RH na headline)\n- Vagas de ENTRADA em Química/laboratório: score alto se aceitarem pouca experiência (4 meses)\n- Vagas de ENTRADA em caldeiraria/offshore/altura que aceitem candidato em curso: score 7–9\n- Vagas de caldeireiro pleno/sênior ou IRATA que EXIJAM certificação já emitida: score baixo (0–4)\n- Vagas de BI/dados pleno/sênior (gestor de BI, 3+ anos, SAS avançado): score baixo (0–4) — experiência real é de assistente, cerca de 1 ano\n- Vagas que exijam inglês fluente: score baixo (0–4)\n- Vagas administrativas/atendimento remotas de entrada: score médio (5–7)\n\nResponda SOMENTE com JSON válido neste formato:\n{\n  \"score\": <número de 0 a 10>,\n  \"justificativa\": \"<2 a 3 frases explicando o score>\",\n  \"pontos_de_atencao\": \"<requisitos que o candidato não atende, ou 'nenhum'>\"\n}"
+              "content": "Você é um recrutador de dados/BI. Avalie o fit entre o candidato e a vaga.\n\nPERFIL — João Vítor Clemente Ferreira · Magé/RJ · (21) 97726-9184\n- Foco exclusivo: Business Intelligence / Análise de Dados\n- Experiência: Assistente Administrativo na SEPLAG Niterói (desde mar/2025), atuando na equipe de BI\n  Entregas: dashboards Power BI, limpeza de dados e scripts SQL, migração de planilhas Excel para Power BI, documentação de processos, atualização de indicadores diários para operações\n- Formação complementar: Universo BI Treinamentos (desde jan/2025)\n- Cursos superiores em andamento: Análise e Desenvolvimento de Sistemas (UNINTER); Engenharia de Software (UNINTER); Gestão de RH (Estácio); Economia (Estácio) — reforçam lógica, processos e visão de negócio, mas o alvo de carreira AGORA é BI/dados\n- Stack: Power BI, Excel, SQL, dashboards, KPIs/indicadores, modelagem básica de dados\n- Inglês: básico (NÃO fluente)\n- Busca: vagas de ENTRADA/JÚNIOR — Analista de Dados Júnior, Assistente de BI, Analista de BI Júnior, Estágio em BI/Dados, Assistente de Business Intelligence\n- Aceita: remoto, híbrido ou presencial (RJ/Magé/Niterói e região); CLT ou temporário; disponibilidade\n\nCRITÉRIOS DE SCORE:\n- Vagas júnior/assistente/estágio pedindo Power BI, Excel e/ou SQL: score 8–10\n- Vagas que peçam dashboards, indicadores, KPIs, migração Excel→BI: score alto\n- Vagas pleno/sênior, \"gestor de BI\", 3+ anos, SAS avançado, engenharia de dados pesada: score 0–4\n- Vagas que exijam inglês fluente: score 0–4\n- Vagas fora de BI/dados (mesmo que administrativas): score baixo, a menos que tenham forte componente de indicadores/relatórios\n\nResponda SOMENTE com JSON válido:\n{\n  \"score\": <0 a 10>,\n  \"justificativa\": \"<2 a 3 frases>\",\n  \"pontos_de_atencao\": \"<gaps ou 'nenhum'>\"\n}"
             },
             {
               "role": "user",
