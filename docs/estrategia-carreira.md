@@ -13,7 +13,7 @@ A leitura estratégica: **caldeiraria + IRATA são o destino, mas ainda estão e
 | **A — Renda imediata + vagas de entrada** | Auxiliar/assistente/trainee em caldeiraria, Química, RH, atendimento ou administrativo | Semanas | 50% |
 | **B — Caldeiraria + IRATA (em formação)** | Terminar o curso de caldeireiro e a certificação IRATA Nível 1 — aí o mercado muda de patamar | Enquanto os cursos durarem | 30% |
 | **C — Química e RH** | Laboratório / auxiliar de RH/DP usando o que já tem | 1–6 meses | 15% |
-| **D — TI/Full Stack ** | Curso Full Stack Serratec — estágio/júnior quando o curso avançar | Durante o curso | 5% |
+| **D — TI/Full Stack** | Curso Full Stack (Firjan · Serratec · Senai) — estágio/júnior quando o curso avançar | Durante o curso | 5% |
 
 ## Trilha B — Caldeiraria + IRATA (em formação — prioridade de conclusão)
 
