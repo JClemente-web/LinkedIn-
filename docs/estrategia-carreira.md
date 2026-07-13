@@ -1,6 +1,6 @@
 # Estratégia de carreira: Caldeiraria/Offshore · Química · RH · TI
 
-Plano para **João Vítor Clemente Ferreira** (Rio de Janeiro/RJ): técnico em Química (4 meses de prática), formado em Gestão de RH e Economia, certificado para embarque, **cursando caldeireiro**, **IRATA Nível 1 em processo**, cursando programação/automação (**Fostec · Firjan/Cerratec · Senai**) — e precisando de **renda agora**.
+Plano para **João Vítor Clemente Ferreira** (Rio de Janeiro/RJ): técnico em Química (4 meses de prática), formado em Gestão de RH e Economia, certificado para embarque, **cursando caldeireiro**, **IRATA Nível 1 em processo**, cursando **Full Stack** (**Fostec · Firjan/Cerratec · Senai**) — e precisando de **renda agora**.
 
 A leitura estratégica: **caldeiraria + IRATA são o destino, mas ainda estão em formação.** Enquanto o curso e a certificação não fecham, o plano A de renda é vaga de **entrada** (auxiliar/ajudante/trainee) nessas áreas **ou** renda imediata em atendimento/administrativo/RH júnior — com Química (4 meses de prática) como carta já utilizável. **Nunca afirmar IRATA ou ofício de caldeireiro já certificados** até terem o documento na mão.
 
@@ -13,7 +13,7 @@ A leitura estratégica: **caldeiraria + IRATA são o destino, mas ainda estão e
 | **A — Renda imediata + vagas de entrada** | Auxiliar/assistente/trainee em caldeiraria, Química, RH, atendimento ou administrativo | Semanas | 50% |
 | **B — Caldeiraria + IRATA (em formação)** | Terminar o curso de caldeireiro e a certificação IRATA Nível 1 — aí o mercado muda de patamar | Enquanto os cursos durarem | 30% |
 | **C — Química e RH** | Laboratório / auxiliar de RH/DP usando o que já tem | 1–6 meses | 15% |
-| **D — TI/Automação (Fostec)** | Curso Fostec + portfólio de automações (este projeto conta) | Durante o curso | 5% |
+| **D — TI/Full Stack (Fostec)** | Curso Full Stack Fostec — estágio/júnior quando o curso avançar | Durante o curso | 5% |
 
 ## Trilha B — Caldeiraria + IRATA (em formação — prioridade de conclusão)
 
@@ -60,9 +60,9 @@ Vagas de entrada com alto volume de contratação, muitas remotas:
 
 **Onde as vagas aparecem:** páginas de carreira das empresas citadas (maioria usa Gupy), LinkedIn, e — muito importante — **grupos de WhatsApp/Facebook de vagas offshore, caldeiraria e parada de manutenção** (Macaé/RJ e polos industriais), onde muita vaga circula antes de qualquer site. Entre neles esta semana.
 
-## Trilha D — TI/Automação (longo prazo, sem pressa)
+## Trilha D — Full Stack (Fostec — longo prazo)
 
-Você já programa por conta própria e **este repositório é seu primeiro portfólio público**: automação com n8n, integração de APIs, IA. Mantenha no GitHub, documente o que construir, e considere vagas de suporte técnico/automação quando o currículo de projetos engordar. Não priorize agora — caldeiraria paga mais e mais rápido.
+Você está no curso **Full Stack (Fostec · Firjan/Cerratec · Senai)**. Foque nos projetos do próprio curso como portfólio. Não priorize vagas de TI agora — renda imediata e concluir caldeiraria/IRATA pagam mais e mais rápido; TI entra quando o curso avançar.
 
 ---
 
@@ -71,8 +71,8 @@ Você já programa por conta própria e **este repositório é seu primeiro port
 O erro clássico da transição é o perfil "genérico que serve para tudo e não aparece em busca nenhuma". Como resolver:
 
 - **Uma conta só, sempre**: manter mais de um perfil no LinkedIn viola os termos da plataforma (uma pessoa = um perfil) e o LinkedIn detecta e bane **todas** as contas duplicadas. Além disso, 4 perfis dividem suas conexões e histórico por 4 — você fica invisível em todas as buscas em vez de forte em uma. Um perfil bem estruturado fala com todas as suas audiências.
-- **Headline**: `Técnico em Química | Gestão de RH & Economia | Caldeireiro em formação | IRATA L1 em processo | Fostec (Firjan/Senai) | RJ`
-- **Open to Work**: cadastre até 5 cargos — ex.: Auxiliar de Caldeiraria, Técnico de Laboratório, Assistente de RH, Auxiliar de Departamento Pessoal, Suporte Técnico / Automação.
+- **Headline**: `Técnico em Química | Gestão de RH & Economia | Caldeireiro em formação | IRATA L1 em processo | Full Stack Fostec (Firjan/Senai) | RJ`
+- **Open to Work**: cadastre até 5 cargos — ex.: Auxiliar de Caldeiraria, Técnico de Laboratório, Assistente de RH, Auxiliar de Departamento Pessoal, Desenvolvedor Full Stack (estágio/júnior).
 - **Sobre**: 3 parágrafos honestos — o que já tem (Química, RH, Economia, certificado de embarque); o que está cursando (caldeireiro, IRATA L1, Fostec); o que busca e disponibilidade. Termine com contato: (21) 97726-9184.
 - **Competências**: as 10–15 que aparecem nas vagas de entrada que você quer.
 - **Atividade**: posts em tom de aprendizado em público — nunca afirmar IRATA ou ofício já certificados.

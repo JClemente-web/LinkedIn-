@@ -41,11 +41,11 @@ const PERGUNTAS = [
   },
   {
     token: "__PROGRAMACAO__",
-    pergunta: "Sua experiência com programação/automação",
+    pergunta: "Sua experiência com programação",
     exemplo:
-      "ex.: autodidata — automações com n8n, integração de APIs e IA (Enter aceita esse texto)",
+      "ex.: cursando Full Stack (Fostec · Firjan/Cerratec · Senai) (Enter aceita esse texto)",
     padrao:
-      "autodidata — montou automações com n8n, integrações de API e IA",
+      "cursando Full Stack (Fostec · Firjan/Cerratec · Senai) — ainda em formação, sem experiência profissional",
   },
 ];
 
