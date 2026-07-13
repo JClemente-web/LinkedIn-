@@ -61,17 +61,16 @@ n8n import:workflow --separate --input=caminho/para/LinkedIn-/workflows
 1. Crie uma conta em [n8n.io](https://n8n.io).
 2. Importe cada JSON da pasta [`workflows/`](workflows/) em **Workflows → Import from File**.
 
-### Antes de importar: preencha seu perfil com 1 comando
+### Antes de importar: perfil já preenchido
 
-Na pasta do projeto, rode:
+Os 3 workflows já vêm com os dados de **João Vítor Clemente Ferreira** (Rio de Janeiro/RJ). Se precisar atualizar algo (ex.: quando o IRATA Nível 1 sair ou o curso de caldeireiro terminar), rode:
 
 ```bash
+# opcional — só se quiser reescrever os dados
 node preencher-perfil.js
 ```
 
-O script faz 6 perguntas (nome, cidade, contato, experiência de caldeiraria, IRATA, programação) e grava as respostas nos 3 workflows automaticamente. Pode rodar de novo sempre que quiser atualizar (os originais ficam salvos como `.bak`).
-
-> Se estiver usando a Opção A (Docker), rode o script **antes** do `docker compose up -d`, para o n8n já subir com os workflows preenchidos.
+> Se estiver usando a Opção A (Docker), o n8n já sobe com os workflows preenchidos.
 
 ### Depois de logar (todas as opções)
 

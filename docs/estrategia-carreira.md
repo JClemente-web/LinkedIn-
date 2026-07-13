@@ -1,8 +1,8 @@
 # Estratégia de carreira: Caldeiraria/Offshore · Química · RH · TI
 
-Plano prático para um perfil raro: **caldeireiro** (ofício com experiência prática), **acesso por corda/IRATA**, **técnico em Química** (4 meses de experiência), **curso de trabalho embarcado**, formado em **Gestão de RH e Economia**, **programação autodidata** — e precisando de **renda agora**.
+Plano para **João Vítor Clemente Ferreira** (Rio de Janeiro/RJ): técnico em Química (4 meses de prática), formado em Gestão de RH e Economia, certificado para embarque, **cursando caldeireiro**, **IRATA Nível 1 em processo**, cursando programação/automação (**Fostec · Firjan/Cerratec · Senai**) — e precisando de **renda agora**.
 
-A leitura estratégica: **a caldeiraria não é "mais uma opção" — é o ativo principal.** Caldeireiro com IRATA é um dos perfis mais disputados em parada de manutenção, estaleiro e plataforma, e paga bem. As outras frentes (Química, RH, TI) rodam em paralelo como diversificação, não como plano A.
+A leitura estratégica: **caldeiraria + IRATA são o destino, mas ainda estão em formação.** Enquanto o curso e a certificação não fecham, o plano A de renda é vaga de **entrada** (auxiliar/ajudante/trainee) nessas áreas **ou** renda imediata em atendimento/administrativo/RH júnior — com Química (4 meses de prática) como carta já utilizável. **Nunca afirmar IRATA ou ofício de caldeireiro já certificados** até terem o documento na mão.
 
 ---
 
@@ -10,21 +10,21 @@ A leitura estratégica: **a caldeiraria não é "mais uma opção" — é o ativ
 
 | Trilha | Objetivo | Horizonte | Esforço semanal |
 |---|---|---|---|
-| **A — Caldeiraria/Offshore (ativo principal)** | Vaga de caldeireiro — industrial, naval, parada de manutenção; com IRATA, acesso por corda embarcado | Semanas a poucos meses | 50% |
-| **B — Renda imediata (se A demorar)** | Qualquer vaga de entrada remota/local que pague as contas | Semanas | 30% |
-| **C — Química e RH** | Primeira vaga técnica de laboratório, ou auxiliar de RH/DP | 1–6 meses | 15% |
-| **D — TI/Automação** | Longo prazo; portfólio de automações (este projeto conta) | 6+ meses | 5% |
+| **A — Renda imediata + vagas de entrada** | Auxiliar/assistente/trainee em caldeiraria, Química, RH, atendimento ou administrativo | Semanas | 50% |
+| **B — Caldeiraria + IRATA (em formação)** | Terminar o curso de caldeireiro e a certificação IRATA Nível 1 — aí o mercado muda de patamar | Enquanto os cursos durarem | 30% |
+| **C — Química e RH** | Laboratório / auxiliar de RH/DP usando o que já tem | 1–6 meses | 15% |
+| **D — TI/Automação (Fostec)** | Curso Fostec + portfólio de automações (este projeto conta) | Durante o curso | 5% |
 
-## Trilha A — Caldeiraria + IRATA (comece por aqui)
+## Trilha B — Caldeiraria + IRATA (em formação — prioridade de conclusão)
 
-- **Onde estão as vagas**: paradas de manutenção (refinarias, petroquímicas, papel e celulose), estaleiros, montagem industrial e offshore. Empresas de manutenção e montagem industrial contratam caldeireiro em volume para paradas — e quem tem IRATA entra na frente para serviços em altura.
-- **Canais**: Gupy/páginas de carreira das empresas de manutenção industrial e montagem; grupos de WhatsApp/Facebook de vagas de caldeiraria, offshore e acesso por corda (as vagas de parada circulam quase todas por indicação e grupo, antes de qualquer site); LinkedIn com headline certa.
-- **Documentos em dia**: IRATA (nível e validade), CBSP/equivalente, NR-35, NR-34 se tiver, ASO. Vaga de parada chama rápido — quem está com documento vencido perde a janela.
-- **Salário**: caldeireiro embarcado/parada com corda ganha múltiplos do que qualquer vaga júnior de RH ou TI pagaria agora. Por isso é o plano A financeiro também.
+- **Foco agora**: concluir o curso de caldeireiro e a certificação IRATA Nível 1. Com os dois na mão, o perfil sobe de patamar (parada de manutenção, estaleiro, offshore).
+- **Enquanto isso**: candidatar-se só a vagas de **entrada** (auxiliar, ajudante, trainee) — o radar já filtra vagas de pleno/sênior que exigem certificação pronta.
+- **Canais**: Gupy, grupos de WhatsApp/Facebook de vagas de caldeiraria/offshore (Macaé e RJ), LinkedIn.
+- **Documentos**: IRATA Nível 1 (quando sair), CBSP/equivalente, NR-35, ASO. Vaga de parada chama rápido — quem está com documento vencido perde a janela.
 
 ---
 
-## Trilha B — Renda imediata (enquanto a Trilha A não fecha)
+## Trilha A — Renda imediata (prioridade nº 1 enquanto B não fecha)
 
 Vagas de entrada com alto volume de contratação, muitas remotas:
 
@@ -71,17 +71,17 @@ Você já programa por conta própria e **este repositório é seu primeiro port
 O erro clássico da transição é o perfil "genérico que serve para tudo e não aparece em busca nenhuma". Como resolver:
 
 - **Uma conta só, sempre**: manter mais de um perfil no LinkedIn viola os termos da plataforma (uma pessoa = um perfil) e o LinkedIn detecta e bane **todas** as contas duplicadas. Além disso, 4 perfis dividem suas conexões e histórico por 4 — você fica invisível em todas as buscas em vez de forte em uma. Um perfil bem estruturado fala com todas as suas audiências.
-- **Headline** (o campo mais pesado na busca do recrutador): `Caldeireiro | Acesso por Corda IRATA | Técnico em Química | Gestão de RH & Economia | Disponível para embarque`
-- **Open to Work** (visível para recrutadores): cadastre até 5 cargos — ex.: Caldeireiro, Técnico de Acesso por Corda, Técnico de Laboratório, Assistente de RH, Auxiliar de Departamento Pessoal.
-- **Sobre**: 3 parágrafos — o ofício (caldeiraria + IRATA + embarque); as formações (Química, RH, Economia) e o que constrói em automação; o que busca e disponibilidade imediata. Termine com contato.
-- **Competências**: adicione as 10–15 que aparecem nas vagas que você quer (caldeiraria, leitura de desenho, solda?, acesso por corda, análises laboratoriais, recrutamento…) — o filtro de skills do Recruiter usa isso.
-- **Atividade**: os posts automáticos (Workflow 1) já alternam entre as áreas — com autoridade no que você domina (campo) e aprendizado em público no resto.
+- **Headline**: `Técnico em Química | Gestão de RH & Economia | Caldeireiro em formação | IRATA L1 em processo | Fostec (Firjan/Senai) | RJ`
+- **Open to Work**: cadastre até 5 cargos — ex.: Auxiliar de Caldeiraria, Técnico de Laboratório, Assistente de RH, Auxiliar de Departamento Pessoal, Suporte Técnico / Automação.
+- **Sobre**: 3 parágrafos honestos — o que já tem (Química, RH, Economia, certificado de embarque); o que está cursando (caldeireiro, IRATA L1, Fostec); o que busca e disponibilidade. Termine com contato: (21) 97726-9184.
+- **Competências**: as 10–15 que aparecem nas vagas de entrada que você quer.
+- **Atividade**: posts em tom de aprendizado em público — nunca afirmar IRATA ou ofício já certificados.
 
 ## Como o sistema n8n foi configurado para você
 
-- **Radar de vagas (Workflow 2)**: 4 buscas diárias no mesmo workflow — RH, Química, Caldeiraria/Offshore/IRATA e Programação/TI, Brasil inteiro. O score da IA prioriza vagas de caldeireiro (sua profissão), combos entre áreas, e rebaixa vagas que exigem inglês fluente.
-- **Cartas (Workflow 3)**: partem sempre da força mais relevante para a vaga — o ofício quando for caldeiraria/offshore; a formação quando for Química/RH; os projetos quando for TI.
-- **Posts (Workflow 1)**: alternância de audiências, com tom de autoridade nas áreas de ofício.
+- **Radar de vagas (Workflow 2)**: 4 buscas diárias — RH, Química, Caldeiraria/Offshore/IRATA e Programação/TI. Score alto para vagas de **entrada**; score baixo para pleno/sênior que exigem IRATA já emitido ou anos de caldeiraria.
+- **Cartas (Workflow 3)**: já com seu nome, telefone e cidade; honestas sobre formação em andamento.
+- **Posts (Workflow 1)**: tom de aprendizado em público nas 4 áreas.
 
 **Complete nos prompts** (campos entre colchetes): seu nome, cidade/UF, nível de inglês e contato.
 
