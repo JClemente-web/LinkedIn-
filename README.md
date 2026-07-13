@@ -79,6 +79,7 @@ node preencher-perfil.js
 
 ## Estratégia de carreira
 
-O plano completo das três trilhas (renda imediata · RH · trabalho embarcado), com onde procurar além do LinkedIn, checklist de documentos offshore, posicionamento de perfil e rotina semanal, está em **[docs/estrategia-carreira.md](docs/estrategia-carreira.md)**.
+- Análise do seu LinkedIn (o que está forte, o que está desalinhado e o que mudar): **[docs/analise-linkedin.md](docs/analise-linkedin.md)**
+- Plano das trilhas (BI · RH · campo · TI): **[docs/estrategia-carreira.md](docs/estrategia-carreira.md)**
 
 > **Importante:** aplicar automaticamente (bot clicando em "Easy Apply") viola os Termos do LinkedIn e arrisca banimento. A arquitetura aqui é *human-in-the-loop*: a automação encontra, filtra, pontua e prepara a carta — o clique final de aplicar é seu. Detalhes no guia.

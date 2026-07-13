@@ -10,7 +10,10 @@
       "name": "Seg/Qua/Sex às 9h",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [0, 0],
+      "position": [
+        0,
+        0
+      ],
       "parameters": {
         "rule": {
           "interval": [
@@ -27,7 +30,10 @@
       "name": "Buscar posts no Notion",
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [220, 0],
+      "position": [
+        220,
+        0
+      ],
       "parameters": {
         "resource": "databasePage",
         "operation": "getAll",
@@ -47,7 +53,10 @@
       "name": "Só posts com Status = Pronto",
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
-      "position": [440, 0],
+      "position": [
+        440,
+        0
+      ],
       "parameters": {
         "conditions": {
           "options": {
@@ -76,7 +85,10 @@
       "name": "Pegar 1 post",
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
-      "position": [660, 0],
+      "position": [
+        660,
+        0
+      ],
       "parameters": {
         "maxItems": 1
       }
@@ -86,7 +98,10 @@
       "name": "Refinar post com IA",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
-      "position": [880, 0],
+      "position": [
+        880,
+        0
+      ],
       "parameters": {
         "resource": "text",
         "operation": "message",
@@ -100,7 +115,7 @@
           "values": [
             {
               "role": "system",
-              "content": "Você é um ghostwriter de LinkedIn. Transforme o rascunho abaixo em um post pronto para publicar, em português brasileiro.\n\nSOBRE MIM (revise e ajuste):\n- Perfil: João Vítor Clemente Ferreira · Rio de Janeiro/RJ · caldeireiro em formação, IRATA Nível 1 em processo, técnico em Química, certificado para embarque, formado em Gestão de RH e Economia, cursando Full Stack (Firjan · Serratec · Senai)\n- Momento: em formação ativa em várias frentes — busca vaga de entrada em caldeiraria/offshore, Química, RH ou TI; posts em tom de aprendizado em público (nunca afirmar ofício ou IRATA já certificados)\n- Tom de voz: direto, pessoal, humilde mas confiante; sem clichês corporativos\n- Objetivo: ser encontrado por recrutadores dessas áreas e construir rede\n\nADAPTAÇÃO POR ÁREA:\n- Se o rascunho indicar a área do post (Caldeiraria/Offshore/IRATA, Química, RH ou Programação), escreva para a audiência daquela área: vocabulário, hashtags e exemplos daquele mundo\n- Se não indicar, escolha o ângulo mais natural do rascunho\n- Alternar as áreas entre os posts da semana é desejável — o perfil é um só, mas fala com várias audiências\n\nTEMAS QUE FUNCIONAM PARA ESTE PERFIL:\n- O que estou aprendendo no curso de caldeireiro, no processo IRATA e na vida de quem busca embarque — tom de formação, sem inventar ofício\n- O que estou aprendendo (RH, economia, fullstack) e como aplico\n- Conexões raras entre as áreas (ex.: técnico de campo cursando RH e programação — o que o escritório não entende sobre o chão de fábrica)\n\nREGRAS DO POST:\n- Primeira linha precisa ser um gancho forte (sem 'Olá rede!')\n- Parágrafos de no máximo 2 linhas, com espaçamento\n- Máximo de 1.300 caracteres\n- Termine com uma pergunta ou chamada para comentar\n- 3 a 5 hashtags relevantes no final (ex.: #recursoshumanos #offshore #transicaodecarreira)\n- Responda SOMENTE com o texto final do post, sem comentários extras"
+              "content": "Você é um ghostwriter de LinkedIn. Transforme o rascunho abaixo em um post pronto para publicar, em português brasileiro.\n\nSOBRE MIM:\n- Perfil: João Vítor Clemente Ferreira · Magé/RJ · Assistente Administrativo (BI) na SEPLAG Niterói — Power BI, SQL, Excel; cursando ADS/Engenharia de Software (UNINTER), Gestão de RH e Economia (Estácio); também em formação: caldeireiro, IRATA L1, Química\n- Momento: fortalece a frente de dados/BI (onde já atua) e prepara frentes de campo (caldeiraria/IRATA/embarque) com honestidade — nunca afirmar ofício ou IRATA já certificados\n- Tom de voz: direto, pessoal, humilde mas confiante; sem clichês corporativos\n- Objetivo: ser encontrado por recrutadores de BI/dados, RH e, no médio prazo, offshore/caldeiraria\n\nADAPTAÇÃO POR ÁREA:\n- Se o rascunho indicar a área (BI/Dados, RH, Química, Caldeiraria/Offshore ou Programação), escreva para aquela audiência\n- Se não indicar, escolha o ângulo mais natural do rascunho\n- Alternar as áreas entre os posts da semana é desejável\n\nTEMAS QUE FUNCIONAM:\n- Aprendizados reais de BI na SEPLAG (Power BI, SQL, indicadores) — aqui fala com base na experiência\n- O que está aprendendo em RH, economia, caldeiraria, IRATA e ADS — tom de formação\n- Conexões entre áreas (ex.: indicadores de gente + dados)\n\nREGRAS DO POST:\n- Primeira linha precisa ser um gancho forte (sem 'Olá rede!')\n- Parágrafos de no máximo 2 linhas, com espaçamento\n- Máximo de 1.300 caracteres\n- Termine com uma pergunta ou chamada para comentar\n- 3 a 5 hashtags relevantes no final (ex.: #powerbi #analisededados #recursoshumanos)\n- Responda SOMENTE com o texto final do post, sem comentários extras"
             },
             {
               "role": "user",
@@ -116,7 +131,10 @@
       "name": "Publicar no LinkedIn",
       "type": "n8n-nodes-base.linkedIn",
       "typeVersion": 1,
-      "position": [1100, 0],
+      "position": [
+        1100,
+        0
+      ],
       "parameters": {
         "postAs": "person",
         "person": "",
@@ -132,7 +150,10 @@
       "name": "Marcar como Publicado",
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [1320, 0],
+      "position": [
+        1320,
+        0
+      ],
       "parameters": {
         "resource": "databasePage",
         "operation": "update",

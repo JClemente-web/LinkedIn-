@@ -10,7 +10,10 @@
       "name": "A cada 2 horas",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [0, 0],
+      "position": [
+        0,
+        0
+      ],
       "parameters": {
         "rule": {
           "interval": [
@@ -27,7 +30,10 @@
       "name": "Buscar vagas no Radar",
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [220, 0],
+      "position": [
+        220,
+        0
+      ],
       "parameters": {
         "resource": "databasePage",
         "operation": "getAll",
@@ -47,7 +53,10 @@
       "name": "Só Status = Aplicar",
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
-      "position": [440, 0],
+      "position": [
+        440,
+        0
+      ],
       "parameters": {
         "conditions": {
           "options": {
@@ -76,7 +85,10 @@
       "name": "Gerar carta de apresentação",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
-      "position": [660, 0],
+      "position": [
+        660,
+        0
+      ],
       "parameters": {
         "resource": "text",
         "operation": "message",
@@ -90,7 +102,7 @@
           "values": [
             {
               "role": "system",
-              "content": "Você escreve cartas de apresentação curtas e específicas para vagas de ENTRADA. O candidato está em formação em várias frentes — a carta deve ser honesta, confiante e partir da formação mais relevante para a vaga, sem inventar experiência ou certificação.\n\nSOBRE MIM:\n- Nome: João Vítor Clemente Ferreira\n- Caldeireiro: em formação (cursando)\n- Acesso por corda: IRATA Nível 1 em processo de certificação\n- Técnico em Química com 4 meses de experiência prática\n- Curso de segurança para trabalho embarcado/offshore concluído — disponível para embarcar\n- Formado em Gestão de Recursos Humanos e Economia\n- Programação: cursando Full Stack (Firjan · Serratec · Senai) — ainda em formação, sem experiência profissional\n- Disponibilidade imediata — remoto, presencial ou embarcado\n- Contato: (21) 97726-9184 · Rio de Janeiro/RJ\n\nESTRATÉGIA POR ÁREA:\n- Vaga de caldeiraria (auxiliar/ajudante/trainee): destacar o curso em andamento + certificado de embarque + disponibilidade total — perfil de quem está se preparando agora\n- Vaga IRATA/altura: mencionar que está no processo do Nível 1 (NÃO afirmar que já é certificado) + curso de caldeireiro + segurança embarcada\n- Vaga offshore/embarcada: destacar certificado de segurança em dia + formação em Química + cursos de caldeiraria/IRATA em andamento + disponibilidade para escala\n- Vaga de Química/laboratório: destacar a formação técnica e os 4 meses de prática\n- Vaga de RH: destacar Gestão de RH + Economia; interesse em RH industrial/operacional\n- Vaga de TI/desenvolvimento/suporte: destacar o curso Full Stack (Firjan · Serratec · Senai) e disponibilidade para estágio/júnior — sem inventar projetos ou experiência profissional\n\nOBS: inglês básico — nunca afirmar fluência; se a vaga pedir inglês, mencionar que está desenvolvendo\n\nREGRAS:\n- Máximo 150 palavras, 3 parágrafos\n- Mencione a empresa e a vaga pelo nome; conecte a formação mais relevante a 1 requisito da vaga\n- Tom confiante e direto; sem clichês ('sou apaixonado', 'trabalho em equipe') e sem pedir desculpa pela falta de experiência\n- Escreva no idioma da vaga (título em inglês = carta em inglês)\n- Responda SOMENTE com o texto da carta"
+              "content": "Você escreve cartas de apresentação curtas e específicas para vagas de ENTRADA. Seja honesto: o candidato tem experiência comprovada em BI/administrativo na SEPLAG Niterói; as demais frentes (caldeiraria, IRATA, Química) estão em formação — nunca inventar certificação ou ofício.\n\nSOBRE MIM:\n- Nome: João Vítor Clemente Ferreira · Magé/RJ · (21) 97726-9184\n- Experiência: Assistente Administrativo na SEPLAG Niterói (equipe de BI) — Power BI, SQL, Excel, dashboards, indicadores e documentação de processos\n- Formação em andamento: ADS e Engenharia de Software (UNINTER); Gestão de RH e Economia (Estácio); Universo BI Treinamentos\n- Também cursando: caldeireiro; IRATA Nível 1 em processo; técnico em Química com 4 meses de prática; certificado de segurança para embarque\n- Disponibilidade: remoto, híbrido, presencial ou embarcado\n\nESTRATÉGIA POR ÁREA:\n- Vaga de BI/dados: liderar com SEPLAG + Power BI/SQL/Excel + entregas (dashboards, scripts SQL, migração Excel→Power BI)\n- Vaga de RH/DP: liderar com Gestão de RH (Estácio) + Economia; citar vivência administrativa e indicadores\n- Vaga de Química/laboratório: destacar técnico em Química + 4 meses de prática\n- Vaga de caldeiraria (auxiliar/ajudante/trainee): curso em andamento + certificado de embarque — NÃO afirmar ofício consolidado\n- Vaga IRATA/altura: mencionar processo do Nível 1 (NÃO afirmar certificado pronto)\n- Vaga offshore: certificado de segurança + Química + cursos em andamento + disponibilidade\n- Vaga de desenvolvimento/estágio: ADS + Engenharia de Software (UNINTER) — sem inventar projetos profissionais de software\n\nOBS: inglês básico — nunca afirmar fluência; se a vaga pedir inglês, mencionar que está desenvolvendo\n\nREGRAS:\n- Máximo 150 palavras, 3 parágrafos\n- Mencione a empresa e a vaga pelo nome; conecte a formação mais relevante a 1 requisito da vaga\n- Tom confiante e direto; sem clichês ('sou apaixonado', 'trabalho em equipe') e sem pedir desculpa pela falta de experiência\n- Escreva no idioma da vaga (título em inglês = carta em inglês)\n- Responda SOMENTE com o texto da carta"
             },
             {
               "role": "user",
@@ -106,7 +118,10 @@
       "name": "Salvar carta e marcar Aplicado",
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [880, 0],
+      "position": [
+        880,
+        0
+      ],
       "parameters": {
         "resource": "databasePage",
         "operation": "update",
@@ -135,7 +150,10 @@
       "name": "Criar tarefa no Todoist",
       "type": "n8n-nodes-base.todoist",
       "typeVersion": 2.1,
-      "position": [1100, 0],
+      "position": [
+        1100,
+        0
+      ],
       "parameters": {
         "resource": "task",
         "operation": "create",

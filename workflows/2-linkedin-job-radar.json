@@ -10,7 +10,10 @@
       "name": "Todo dia às 8h",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [0, 0],
+      "position": [
+        0,
+        0
+      ],
       "parameters": {
         "rule": {
           "interval": [
@@ -27,9 +30,12 @@
       "name": "Definir buscas (3 áreas)",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [200, 0],
+      "position": [
+        200,
+        0
+      ],
       "parameters": {
-        "jsCode": "// Uma busca por área — edite as palavras-chave à vontade.\n// Cada item vira uma chamada separada à Apify.\nreturn [\n  {\n    json: {\n      area: 'RH',\n      keywords: '\"recursos humanos\" OR recrutamento OR \"departamento pessoal\" OR \"analista de rh\" OR \"assistente de rh\"'\n    }\n  },\n  {\n    json: {\n      area: 'Química',\n      keywords: 'químico OR química OR laboratório OR \"técnico químico\"'\n    }\n  },\n  {\n    json: {\n      area: 'Caldeiraria/Offshore/IRATA',\n      keywords: 'caldeireiro OR caldeiraria OR offshore OR embarcado OR plataforma OR IRATA OR \"acesso por corda\" OR \"alpinismo industrial\" OR \"trabalho em altura\"'\n    }\n  },\n  {\n    json: {\n      area: 'Programação/TI',\n      keywords: 'desenvolvedor OR programador OR \"full stack\" OR fullstack OR \"desenvolvedor júnior\" OR \"estágio desenvolvimento\" OR \"suporte técnico\"'\n    }\n  }\n];"
+        "jsCode": "// Uma busca por área — edite as palavras-chave à vontade.\n// Cada item vira uma chamada separada à Apify.\nreturn [\n  {\n    json: {\n      area: 'BI/Dados',\n      keywords: '\"power bi\" OR \"analista de dados\" OR \"business intelligence\" OR \"assistente de bi\" OR sql OR dashboard'\n    }\n  },\n  {\n    json: {\n      area: 'RH',\n      keywords: '\"recursos humanos\" OR recrutamento OR \"departamento pessoal\" OR \"analista de rh\" OR \"assistente de rh\"'\n    }\n  },\n  {\n    json: {\n      area: 'Química',\n      keywords: 'químico OR química OR laboratório OR \"técnico químico\"'\n    }\n  },\n  {\n    json: {\n      area: 'Caldeiraria/Offshore/IRATA',\n      keywords: 'caldeireiro OR caldeiraria OR offshore OR embarcado OR plataforma OR IRATA OR \"acesso por corda\" OR \"trabalho em altura\"'\n    }\n  },\n  {\n    json: {\n      area: 'Programação/TI',\n      keywords: 'desenvolvedor OR programador OR \"full stack\" OR \"desenvolvedor júnior\" OR \"estágio desenvolvimento\" OR \"analise e desenvolvimento\"'\n    }\n  }\n];"
       }
     },
     {
@@ -37,7 +43,10 @@
       "name": "Buscar vagas (Apify)",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [400, 0],
+      "position": [
+        400,
+        0
+      ],
       "parameters": {
         "method": "POST",
         "url": "https://api.apify.com/v2/acts/k1ra~linkedin-jobs-scraper/run-sync-get-dataset-items",
@@ -58,7 +67,10 @@
       "name": "Remover vagas já vistas",
       "type": "n8n-nodes-base.removeDuplicates",
       "typeVersion": 2,
-      "position": [600, 0],
+      "position": [
+        600,
+        0
+      ],
       "parameters": {
         "operation": "removeItemsSeenInPreviousExecutions",
         "logic": "removeItemsWithAlreadySeenKeyValues",
@@ -73,7 +85,10 @@
       "name": "Filtrar por título",
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
-      "position": [660, 0],
+      "position": [
+        660,
+        0
+      ],
       "parameters": {
         "conditions": {
           "options": {
@@ -281,6 +296,51 @@
                 "type": "string",
                 "operation": "contains"
               }
+            },
+            {
+              "id": "t23",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "power bi",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "t25",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "business",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "t26",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "dashboard",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "t27",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "sql",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "t28",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "excel",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
             }
           ]
         }
@@ -293,7 +353,10 @@
       "name": "Pontuar com IA",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
-      "position": [880, 0],
+      "position": [
+        880,
+        0
+      ],
       "parameters": {
         "resource": "text",
         "operation": "message",
@@ -308,7 +371,7 @@
           "values": [
             {
               "role": "system",
-              "content": "Você é um recrutador experiente. Avalie o fit entre o candidato e a vaga.\n\nPERFIL DO CANDIDATO:\n- Nome: João Vítor Clemente Ferreira · Rio de Janeiro/RJ · (21) 97726-9184\n- Caldeireiro: EM FORMAÇÃO (cursando caldeireiro) — ainda sem ofício consolidado\n- Acesso por corda: IRATA Nível 1 EM PROCESSO DE CERTIFICAÇÃO (ainda não certificado)\n- Técnico em Química, com 4 meses de experiência prática\n- Curso de segurança para trabalho embarcado/offshore concluído (ex.: CBSP) — disponível para embarcar\n- Formação superior: Gestão de Recursos Humanos e Economia (sem experiência formal em RH ainda)\n- Programação: EM FORMAÇÃO — curso Full Stack (Firjan · Serratec · Senai); ainda em aprendizado, sem experiência profissional\n- Objetivo: vagas de ENTRADA/AUXILIAR/ASSISTENTE/TRAINEE/ESTÁGIO em: (1) caldeiraria / offshore / trabalho em altura, (2) Química / laboratório, (3) RH / recrutamento / DP, (4) TI de entrada (desenvolvimento fullstack júnior, suporte técnico, estágio)\n- Aceita: remoto, híbrido, presencial ou embarcado; CLT, PJ ou temporário; disponibilidade imediata\n- Também considera atendimento/administrativo remoto como renda imediata\n- Idiomas: português nativo; inglês básico (NÃO fluente)\n\nCRITÉRIOS DE SCORE:\n- Vagas de ENTRADA em caldeiraria (auxiliar, ajudante, trainee, em formação) e offshore que aceitem candidato em curso: score 8-10\n- Vagas de caldeireiro pleno/sênior ou IRATA que EXIJAM certificação já emitida / anos de experiência: score baixo (0-4) — ainda está em formação\n- Vagas de ENTRADA em Química, RH e TI: score alto se os requisitos forem compatíveis\n- Vagas que combinem áreas (ex.: RH em óleo e gás, laboratório offshore): score máximo\n- Vagas que exijam inglês fluente/avançado: score baixo (0-4)\n- Vagas de TI pleno/sênior ou que exijam stack avançada / 3+ anos de experiência: score baixo (0-4) — o candidato está no curso fullstack, sem experiência profissional\n- Vagas administrativas/atendimento remotas de entrada: score médio (5-7)\n\nResponda SOMENTE com JSON válido neste formato:\n{\n  \"score\": <número de 0 a 10>,\n  \"justificativa\": \"<2 a 3 frases explicando o score>\",\n  \"pontos_de_atencao\": \"<requisitos que o candidato não atende, ou 'nenhum'>\"\n}"
+              "content": "Você é um recrutador experiente. Avalie o fit entre o candidato e a vaga.\n\nPERFIL DO CANDIDATO (fonte: LinkedIn + declaração do candidato):\n- Nome: João Vítor Clemente Ferreira · Magé/RJ · (21) 97726-9184\n- Headline atual no LinkedIn: BI / Análise de dados / Power BI / SQL / Gestão RH\n- Experiência atual: Assistente Administrativo na SEPLAG Niterói (desde mar/2025) — apoia equipe de BI: dashboards Power BI, limpeza de dados e scripts SQL, migração de Excel para Power BI, documentação de processos e indicadores diários\n- Também: Analista de Dados em formação na Universo BI Treinamentos (desde jan/2025)\n- Formação em andamento: Análise e Desenvolvimento de Sistemas (UNINTER, 2025–2027); Engenharia de Software (UNINTER, 2025–2028); Gestão de RH (Estácio, 2024–2026); Ciências Econômicas (Estácio, desde 2023)\n- Declara também: técnico em Química (4 meses de prática); cursando caldeireiro; IRATA Nível 1 em processo; certificado de segurança para embarque — estes itens NÃO aparecem no LinkedIn público ainda\n- Idiomas: português nativo; inglês básico (NÃO fluente)\n- Objetivo: vagas de ENTRADA/JÚNIOR/ASSISTENTE/ESTÁGIO em: (1) BI / dados / Power BI / SQL, (2) RH / DP / recrutamento, (3) Química / laboratório, (4) caldeiraria / offshore / IRATA (quando documentos fecharem), (5) desenvolvimento júnior / estágio\n- Aceita: remoto, híbrido, presencial ou embarcado; CLT, PJ ou temporário\n\nCRITÉRIOS DE SCORE:\n- Vagas de ENTRADA em BI/dados (assistente, analista júnior, estágio) pedindo Power BI / Excel / SQL: score 8–10 — é o que o LinkedIn e a SEPLAG comprovam\n- Vagas de ENTRADA em RH/DP: score alto (formação Estácio + Gestão RH na headline)\n- Vagas de ENTRADA em Química/laboratório: score alto se aceitarem pouca experiência (4 meses)\n- Vagas de ENTRADA em caldeiraria/offshore/altura que aceitem candidato em curso: score 7–9\n- Vagas de caldeireiro pleno/sênior ou IRATA que EXIJAM certificação já emitida: score baixo (0–4)\n- Vagas de BI/dados pleno/sênior (gestor de BI, 3+ anos, SAS avançado): score baixo (0–4) — experiência real é de assistente, cerca de 1 ano\n- Vagas que exijam inglês fluente: score baixo (0–4)\n- Vagas administrativas/atendimento remotas de entrada: score médio (5–7)\n\nResponda SOMENTE com JSON válido neste formato:\n{\n  \"score\": <número de 0 a 10>,\n  \"justificativa\": \"<2 a 3 frases explicando o score>\",\n  \"pontos_de_atencao\": \"<requisitos que o candidato não atende, ou 'nenhum'>\"\n}"
             },
             {
               "role": "user",
@@ -324,7 +387,10 @@
       "name": "Juntar vaga + análise",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [1100, 0],
+      "position": [
+        1100,
+        0
+      ],
       "parameters": {
         "mode": "manual",
         "includeOtherFields": false,
@@ -382,7 +448,10 @@
       "name": "Score ≥ 7?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
-      "position": [1320, 0],
+      "position": [
+        1320,
+        0
+      ],
       "parameters": {
         "conditions": {
           "options": {
@@ -411,7 +480,10 @@
       "name": "Salvar no Radar de Vagas",
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [1540, -100],
+      "position": [
+        1540,
+        -100
+      ],
       "parameters": {
         "resource": "databasePage",
         "operation": "create",
@@ -459,7 +531,10 @@
       "name": "Descartada (score baixo)",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
-      "position": [1540, 100],
+      "position": [
+        1540,
+        100
+      ],
       "parameters": {}
     }
   ],
